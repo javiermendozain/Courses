@@ -1,0 +1,48 @@
+﻿@page
+@model ListaCursos.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-page="/Courses">Cursos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Detalle</li>
+  </ol>
+</nav>
+
+<h3>@Model.Course.Name</h3>
+
+<div class="card">
+    <div class="card-header">
+        Descripción
+    </div>
+
+    <div class="card-text">
+        @Model.Course.Description
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Autor
+    </div>
+
+    <div class="card-text">
+        @Model.Course.Author
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Dirección
+    </div>
+
+    <div class="card-text">
+        @Model.Course.Uri
+    </div>
+</div>
+<br>
+<div>
+    <a asp-page="Courses" class="btn btn-primary">Ver todos los cursos</a>
+</div>

@@ -1,0 +1,65 @@
+﻿@page
+@model ListaCursos.Pages.CoursesModel
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Cursos</li>
+  </ol>
+</nav>
+
+<div class="container">
+
+    <!-- Method get allow save the searches as favorite on browser -->
+    <form method="get" class="form-inline my-2 my-lg-0 ml-auto">
+        <div class="form-group">
+            <div class="row align-items-end">
+                <div class="col">
+                    <div class="input-group">
+                        <!-- Using: asp-for (Tag helpers) for simple access to property of model -->
+                        <input type="search"
+                            class="form-control"
+                            asp-for="Search"
+                            />
+                        <button class="btn btn-light">Buscar</button>
+                        <a asp-page="Edit" class="btn btn-primary">Crear nuevo curso</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <hr/>
+
+    <div class="container-fluid"> 
+        <div class="row">
+            @foreach (var course in Model.Courses)
+            {
+            <div class="col-xl-4 col-md-6 mb-4 ">
+                <div class="card rounded" style="width: 18rem;">
+                    <a asp-page="Details" asp-route-id="@course.Id">
+                        <img src="https://pbs.twimg.com/profile_images/473506797462896640/_M0JJ0v8_400x400.png" class="card-img-top" alt="" >
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>@course.Name</strong></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@course.Author</h6>
+                        <p class="card-text">@course.Description</p>
+                        <a  class="btn btn-link" asp-page="Details"
+                        asp-route-id="@course.Id">
+                            Detalle
+                        </a>
+                        <a  class="btn btn-link"
+                            asp-page="Edit"
+                            asp-route-id="@course.Id">
+                                Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+</div>
