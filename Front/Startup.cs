@@ -25,9 +25,27 @@ namespace ListaCursos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // When ICourse Provider is requested, Fake Course Provider is injected
-            services.AddSingleton<ICoursesProvider, FakeCoursesProvider>();
+            services.AddHttpClient("searchVideosService", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["SearchVideosService"]);
+            });
 
+            services.AddHttpClient("coursesService", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["CoursesService"]);
+            });
+
+            // When ICoursesProvider is requested, Web Api Provider is injected
+            // Use WebApi Provider 
+            services.AddSingleton<ICoursesProvider, WebApiCoursesProvider>();
+
+            // When IVideosProvider is requested, VideosProvider is injected
+            services.AddSingleton<IVideosProvider, VideosProvider>();
+
+            // When IMessageProvider is requested, MessageProvider is injected
+            services.AddSingleton<IMessageProvider, MessageProvider>();
+
+          
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

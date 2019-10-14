@@ -1,0 +1,42 @@
+﻿@page
+@model ChatModel
+@{
+    ViewData["Title"] = "Chat";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+   
+    <div id="frame">
+        <div class="content">
+           
+            <div class="messages">
+                <ul>
+                    <li class="sent">
+                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                    </li>
+                    <li class="sent">
+                       <p>When you're backed against the wall, break the god damn thing down.</p>
+                    </li>
+                    @foreach (var message in Model.Messages)
+                    {
+                        <li class="replies">
+                            <p>@message.MessageText</p>
+                        </li>
+                    }
+                    
+                </ul>
+            </div>
+            <div class="message-input">
+                <form method="get" >
+                    <div class="wrap">
+                        <input type="text" asp-for="TypeMessage" placeholder="Write your message..." />
+                        <button class="submit">
+                            Enviar
+                        </button>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

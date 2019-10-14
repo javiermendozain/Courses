@@ -1,0 +1,84 @@
+﻿@page
+@model VideosModel
+@{
+    ViewData["Title"] = "Videos";
+}
+<div className="player-container">
+
+     <!-- Method get allow save the searches as favorite on browser -->
+    <form method="get" class="form-inline my-2 my-lg-0 ml-auto">
+        <div class="form-group">
+            <div class="row align-items-end">
+                <div class="col">
+                    <div class="input-group">
+                        <!-- Using: asp-for (Tag helpers) for simple access to property of model -->
+                        <input type="search"
+                            class="form-control"
+                            asp-for="Search"
+                            />
+                        <button class="btn btn-light">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Start-videos-grid -->
+    <div className="container-fluid ml-1 mr-1">
+        
+        <hr>
+        <!-- Grid row -->
+        <div class="row">
+            @foreach (var video in Model.Videos.items)
+            {
+                <!-- Grid column -->
+                <div class="col-lg-4 col-md-12 mb-4">
+
+                    <!--Modal: Name-->
+                    <div class="modal fade" id="@video.id.videoId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <!--Content-->
+                            <div class="modal-content">
+
+                                <!--Body-->
+                                <div class="modal-body mb-0 p-0">
+
+                                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@video.id.videoId"
+                                        allowfullscreen></iframe>
+                                    </div>
+
+                                </div>
+
+                                <!--Footer-->
+                                <div class="modal-footer justify-content-center">
+                                    <h4 class="mr-4">@video.snippet.title</h4>
+                                    <h6 class="mr-4">@video.snippet.channelTitle</h6>                               
+                                    <span class="mr-4">@video.snippet.description</span>                                
+                                    <button type="button" class="btn btn-outline-primary btn-rounded btn-md " data-dismiss="modal">Cerrar</button>
+                                </div>
+
+                            </div>
+                            <!--/.Content-->
+
+                        </div>
+                    </div>
+                    <!--Modal: Name-->
+
+                    <a>
+                        <img class="img-fluid z-depth-1" src=@video.snippet.thumbnails.medium.url alt="video"
+                        data-toggle="modal" data-target="#@video.id.videoId">
+                        <p class="mr-4">@video.snippet.title</p>
+                    
+                    </a>
+
+                </div>
+                <!-- Grid column -->
+            }
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- End-videos-grid -->
+
+</div>

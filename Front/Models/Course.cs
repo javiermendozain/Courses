@@ -27,8 +27,8 @@ namespace ListaCursos.Models
         public string Author { get; set; }
 
         // Using DataAnnotations as decorators for validate property
-        [Display(Name = "Dirección del curso")]
-        [Url(ErrorMessage = "La dirección no es válida")]
+        [Display(Name = "URL de imagen del curso")]
+        [Url(ErrorMessage = "imagen no es válida")]
         public string Uri { get; set; }
     }
 }

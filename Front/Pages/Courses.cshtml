@@ -40,7 +40,7 @@
             <div class="col-xl-4 col-md-6 mb-4 ">
                 <div class="card rounded" style="width: 18rem;">
                     <a asp-page="Details" asp-route-id="@course.Id">
-                        <img src="https://pbs.twimg.com/profile_images/473506797462896640/_M0JJ0v8_400x400.png" class="card-img-top" alt="" >
+                        <img src="@course.Uri" class="card-img-top" alt="" >
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><strong>@course.Name</strong></h5>
