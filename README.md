@@ -7,7 +7,7 @@
 
  -  Front/
 
-> **Server Hub with SignalR **
+> **Server Hub with SignalR**
 
  -  SignalRHub/
 
